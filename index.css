@@ -1,0 +1,154 @@
+body{
+    background-color: black;
+}
+
+
+#entireDiv{
+    margin:auto;
+    width:1512px;
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+}
+
+
+
+#leftDiv{
+    width: 951px;
+height: 990px;
+background: linear-gradient(90deg, #000000 0%, #AE8F3D 52.6%, rgba(142, 92, 55, 0.464328) 66.15%, rgba(0, 0, 0, 0) 100%), url(Rectangle.png);
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+#leftDiv1{
+    width: 951px;
+height: 990px;
+background: linear-gradient(90deg, #1E1B1B 0%, #AE8F3D 52.6%, rgba(142, 92, 55, 0.464328) 66.15%, rgba(0, 0, 0, 0) 100%), url(beach.png);
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.ad{
+
+    font-family: 'Reem Kufi Ink';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 38.2551px;
+    line-height: 57px;
+    color: #FFFFFF;
+    margin-right: auto;    
+}
+
+#rightDiv{
+    width:561px;
+    height:990px;
+    background: #1D1D1D;
+}
+
+
+#signUpNow {
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 900;
+font-size: 24px;
+line-height: 29px;
+color: #FFFFFF;
+}
+
+
+.anElement{
+    margin-top:10px;
+    margin-bottom:10px;
+    
+}
+
+#compactSignFlex {
+    width:406px;
+    height:450px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right:122px;
+    margin-left:70px;
+    margin-top:100px;
+}
+
+.formInput{
+    width: 317px;
+    height: 45px;
+    border:none;
+    background: #2B2B2B;
+    border-radius: 8px;
+    color:white;
+    padding-left: 10px;
+    letter-spacing: 1px;
+}
+.loginButton{
+    display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+width: 317px;
+height: 45px;
+background: #FFFFFF;
+border-radius: 8px;
+border:none;
+cursor: pointer;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 15px;
+}
+
+.formInput::placeholder{
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 15px;
+color: #585858;
+}
+
+.orContinue{
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+color: #5F5F5F;
+}
+
+.agree{
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 15px;
+color: #5F5F5F;
+
+}
+
+#loginToYourAccount {
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 15px;
+color: #5F5F5F;
+margin:auto;
+width:188px;
+margin-top:313px;
+}
+
+#loginPageLink {
+    color:#fafafa;
+    text-decoration: none;
+}
