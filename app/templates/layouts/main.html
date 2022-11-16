@@ -17,6 +17,8 @@
 <link type="text/css" rel="stylesheet" href="/static/css/main.css" />
 <link type="text/css" rel="stylesheet" href="/static/css/main.responsive.css" />
 <link type="text/css" rel="stylesheet" href="/static/css/main.quickfix.css" />
+<link type="text/css" rel="stylesheet" href="/static/css/home.css">
+
 <!-- /styles -->
 
 <!-- favicons -->
@@ -37,9 +39,43 @@
 <body>
 
   <!-- Wrap all page content here -->
-  <div id="wrap">
 
-    <!-- Fixed navbar -->
+  <div class="homepage-screen">
+    <div  id="abc">
+      <nav>
+        <a class="navbar-brand" href="/">
+          <img src="/static/img/Frame.png" class="img">
+  </a>
+    
+          <ul>
+            
+              <li><a style="color: rgb(255, 255, 255)" href="#">Home</a></li>
+              <li><a style="color: rgb(255, 255, 255)" href="#">About</a></li>
+              <li><a style="color: rgb(255, 255, 255)" href="#">Categories</a></li>
+              <li><a style="color: rgb(255, 255, 255)" href="#">Contact Us</a></li>
+              {% if current_user.is_anonymous %}
+              <li  class="signup"><a style="color: rgb(25, 141, 150)" href="{{ url_for('register') }}">Sign Up</a></li>
+              {% else %}
+              
+              
+              <li><a style="color: rgb(255, 255, 255)" href="#">Profile</a></li>
+              <li><a style="color: rgb(255, 255, 255)" href="{{ url_for('logout') }}">Logoout</a></li>
+              {% endif %}
+          </ul>
+      </nav>
+    
+      
+      <form action="{{ url_for('search') }}" method="POST">
+        <h1 style= "font-family:Reem Kufi, sans-serif">Start Planning </h1>
+        <h1 style= "font-family:Reem Kufi, sans-serif"> Your Stay</h1>
+        <input type="search" class="search" placeholder="Search here now" aria-label="Search" , name="q">
+        <button class="find-hotel-lnk" type="submit"> Find your hotel </button>
+           
+        </form>
+      </div>
+   
+  </div>
+    <!-- Fixed navbar 
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -71,11 +107,8 @@
             <li><a href="{{ url_for('register') }}">Signup</a></li>
             <li><a href="{{ url_for('login') }}">Login</a></li>
           </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
 
-    <!-- Begin page content -->
+     Begin page content -->
     <main id="content" role="main" class="container">
 
       {% with messages = get_flashed_messages() %}
@@ -95,12 +128,8 @@
 
   </div>
 
-  <div id="footer">
-    <div class="container">
-      <p>Your Company &copy; All Rights Reserved.</p>
+  
       {% block footer %}{% endblock %}
-    </div>
-  </div>
 
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script type="text/javascript" src="/static/js/libs/jquery-1.11.1.min.js"><\/script>')</script>

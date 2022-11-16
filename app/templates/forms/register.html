@@ -1,14 +1,61 @@
 {% extends 'layouts/form.html' %}
 {% block title %}Register{% endblock %}
 {% block content %}
-  <form method="post" class="form">
-    <h3 class="form-heading">Register <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
-    {{ form.name(class_ = 'form-control first-input', placeholder = form.name.label.text, required = true, autofocus = true) }}
-    {{ form.email(class_ = 'form-control', placeholder = form.email.label.text, required = true) }}
-    {{ form.password(class_ = 'form-control', placeholder = form.password.label.text, required = true) }}
-    {{ form.confirm(class_ = 'form-control last-input', placeholder = form.confirm.label.text, required = true) }}
-    <p class="pull-left"><a href="{{ url_for('login') }}">Login</a></p>
-    <input type="submit" value="Register" class="btn btn-primary btn-lg btn-block"  disabled>
-    <p>You must add database as well as Flask-Login to enable user management. See the <a href="http://www.realpython.com">Real Python</a> course for more info!</p>
-  </form>
+
+<div id="entireDiv" style="margin-bottom:0px;">
+  <div id="leftDiv">
+      <div>
+          <div class="ad">Sign Up for</div> 
+          
+          
+          <div class="ad">personalized</div> 
+          
+          <div class="ad">reservation experience</div>
+          
+      </div>
+
+  </div>
+  <div id="rightDiv"> 
+      <div id="compactSignFlex"> 
+        <h2 class="form-heading"> <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h2>
+          <p class="anElement" id="signUpNow">Sign Up Now!!!</p>
+          
+          <form class="form" action="{{ url_for('register') }}" method="POST" >  
+            {{ form.hidden_tag() }}
+            
+            {{ form.name(class_ = 'anElement formInput', placeholder = form.name.label.text, required = true, autofocus = true) }}
+            {{ form.email(class_ = 'anElement formInput', placeholder = form.email.label.text, required = true) }}
+            {{ form.password(class_ = 'anElement formInput', placeholder = form.password.label.text, required = true) }}
+            {{form.submit (class="anElement loginButton")}}
+        </form> 
+          <p class="anElement orContinue">Or </p>
+          <div id="googleStuff" class="anElement"> <!--Google Nonsense-->
+              <script src="https://accounts.google.com/gsi/client" async defer></script>
+              <div id="g_id_onload" 
+                  data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                  data-login_uri="https://your.domain/your_login_endpoint"
+                  data-auto_prompt="false">
+              </div>
+              <div class="g_id_signin"
+                  data-type="standard"
+                  data-size="large"
+                  data-theme="outline"
+                  data-text="sign_in_with"
+                  data-shape="rectangular"
+                  data-logo_alignment="left">
+                  
+              </div>
+          </div>
+          <p style="color:rgb(233, 45, 45); font-size:10px; margin-top:-10px;">Coming Soon</p>
+         
+  </div>
+  <p class="anElement agree">By signing up, you agree to our Terms, Data Policy and Cookies Policy</p>
+  <div id="loginToYourAccount"  >Already have an account? <a id="loginPageLink"  style="font-size:15px !important" href="{{ url_for('login') }}">Log in</a></div>
+</div>
+
+</div>
+
+</div>
+
+</div>
 {% endblock %}

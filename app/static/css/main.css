@@ -3,6 +3,8 @@
  * @file
  * Main stylesheet file.
  */
+ @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap');
+ @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
 
 
 /*****************************************************************************
@@ -34,3 +36,345 @@ a {
  ****************************************************************************/
 
 /* Various other styles end */
+
+.find-hotel-lnk{
+  background-color: transparent;
+  color: white;
+  font-family: 'Reem Kufi', sans-serif;
+  font-size: 36.2px;
+  font-weight: 700;
+  width: 500px;
+  
+  
+  
+  letter-spacing: 0px;
+  text-decoration: none;
+  margin: 15px;
+  text-align: center;
+  margin-left: -600px;
+ 
+  
+  border-style: solid ;
+  background:rgb(95, 194, 201) ;
+  border-width: 30px;
+  border-color: rgb(95, 194, 201);
+
+
+
+}
+
+
+
+.img-fluid{
+  margin-top: -10px;
+
+}
+
+*{
+ 
+  font-family:"Reem Kufi, sans-serif";
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0px;
+ 
+  text-align:center;
+  
+}
+
+#abc{
+  width:100%;
+  height:100vh;
+  background-image: url("/static/img/videoplayback.gif");
+  background-size: cover;
+}
+
+nav{
+  width: 100%;
+  height: 70px;
+  background-color: rgba(197, 197, 197, 0.333);
+  line-height: 50px;
+}
+nav ul{
+  float: right;
+  margin-right: 30px;
+}
+nav ul li{
+  list-style-type: none;
+  display: inline-block;
+  transition: 0.7s all;
+  margin-top: 5px;
+  
+}
+nav ul li:hover{
+  background-color:rgb(95, 194, 201);
+}
+nav ul li a{
+  text-decoration: none;
+  color: #fff;
+  padding: 30px;
+}
+
+.signup{
+ border-style: solid ;
+ border-radius: 3%;
+ width: 200px;
+ border-color: rgb(95, 194, 201);
+ 
+
+  
+}
+
+.search{
+  margin-top: 200px;
+  margin-right: 650px;
+  background: rgba(255, 255, 255, 0.116) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat right;
+  
+  border: none;
+  border-radius: 3px;
+  width: 400px;
+  height: 70px;
+  border-color: rgba(255, 255, 255, 0);
+  border-width: 3px;
+  
+}
+::placeholder{
+color:rgba(0, 0, 0, 0.363);
+opacity: 1;
+
+}
+
+#planstay{
+font-family:"Reem Kufi, sans-serif";
+font-weight: 700;
+font-size: 20px;
+}
+
+h1{
+font-family:"Reem Kufi, sans-serif";
+color: #fff;
+font-weight:90px;
+font-size: 70px;
+text-align: left;
+margin-left: 150px;
+
+
+}
+
+.img{
+width: 46px;
+height: 46px;
+overflow: hidden;
+position: fixed;
+margin: 5px;
+margin-top: -5px;
+}
+
+
+
+
+#entireDiv{
+  margin:auto;
+  width: 1300px;
+  height:800px;
+  display:flex;
+  flex-direction:row;
+  justify-content: center;
+}
+
+
+
+#leftDiv{
+  width: 1200px;
+  margin-left: -200px;
+  max-height:800px;
+background: linear-gradient(90deg, #000000 0%, #AE8F3D 52.6%, rgba(142, 92, 55, 0.464328) 66.15%, rgba(0, 0, 0, 0) 100%), url("/static/img/Rectangle.png");
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+#leftDiv1{
+  width: 1200px;
+  margin-left: -200px;
+height: 800px;
+background: linear-gradient(90deg, #1E1B1B 0%, #AE8F3D 52.6%, rgba(142, 92, 55, 0.464328) 66.15%, rgba(0, 0, 0, 0) 100%), url("/static/img/beach.png");
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.ad{
+
+  font-family: "Reem Kufi, sans-serif" !important;
+  font-style: normal;
+  font-weight: 700;
+  margin-left: -200px;
+  font-size: 38.2551px;
+  line-height: 57px;
+  color: #FFFFFF;
+  margin-right: auto; 
+  margin-bottom: 100px;
+  margin-top: -100px;   
+}
+
+#rightDiv{
+  width:561px;
+  height:800px;
+  background: #1D1D1D;
+}
+
+
+#signUpNow {
+  font-family: "Reem Kufi, sans-serif" !important;
+font-style: normal;
+font-weight: 900;
+font-size: 24px;
+line-height: 29px;
+color: #FFFFFF;
+}
+
+
+.anElement{
+  margin-top:10px;
+  margin-bottom:10px;
+  
+}
+
+#compactSignFlex {
+  width:406px;
+  height:450px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right:122px;
+  margin-left:70px;
+  margin-top:100px;
+}
+
+.formInput{
+  width: 317px;
+  height: 45px;
+  border:none;
+  background: #2B2B2B;
+  border-radius: 8px;
+  color:white;
+  padding-left: 10px;
+  letter-spacing: 1px;
+}
+.loginButton{
+  display: flex;
+  margin-left: 50px;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+width: 317px;
+height: 45px;
+background: #FFFFFF;
+border-radius: 8px;
+border:none;
+cursor: pointer;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 15px;
+}
+
+.formInput::placeholder{
+  font-family: "Reem Kufi, sans-serif" !important;
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 15px;
+color: #585858;
+}
+
+.orContinue{
+  font-family: "Reem Kufi, sans-serif" !important;
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+color: #5F5F5F;
+}
+
+.agree{
+  font-family: "Reem Kufi, sans-serif" !important;
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 15px;
+color: #5F5F5F;
+
+}
+
+#loginToYourAccount {
+  font-family: "Reem Kufi, sans-serif" !important;
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 15px;
+color: #5F5F5F;
+margin:auto;
+width:188px;
+margin-top:auto;
+}
+
+#loginPageLink {
+  color:#fafafa;
+  text-decoration: none;
+}
+body {
+	background: #f9f9f9;
+	font-family: "roboto", sans-serif;
+}
+
+.main-content {
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+.text-striked {
+	text-decoration: line-through;
+}
+
+.shadow {
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06) !important;
+}
+
+.hotel-card .hotel-card_images {
+	flex: 2;
+}
+.hotel-card .hotel-card_images .carousel-item img {
+	height: 250px;
+	object-fit: cover;
+}
+@media (min-width: 992px) {
+	.hotel-card .hotel-card_images .carousel-item img {
+		height: 100%;
+	}
+}
+
+.hotel-card .hotel-card_info {
+	flex: 3;
+}
+
+.hotel-card .amnities img {
+	max-height: 20px;
+}
+
+.hotel-card .hotel-checklist {
+	list-style-type: none;
+}
+
+.carousel .carousel-control-prev {
+	background: linear-gradient(to right, #333333bb, #33333300);
+}
+
+.carousel .carousel-control-next {
+	background: linear-gradient(to left, #333333bb, #33333300);
+}

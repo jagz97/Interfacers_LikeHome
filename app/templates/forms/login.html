@@ -1,13 +1,44 @@
 {% extends 'layouts/form.html' %}
 {% block title %}Login{% endblock %}
 {% block content %}
-  <form method="post" class="form">
-    <h3 class="form-heading">Login <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
-    {{ form.name(class_ = 'form-control first-input', placeholder = form.name.label.text, required = true, autofocus = true) }}
-    {{ form.password(class_ = 'form-control last-input', placeholder = form.password.label.text, required = true) }}
-    <p class="pull-left"><a href="{{ url_for('forgot') }}">Forgot Password?</a></p>
-    <p class="pull-right"><a href="{{ url_for('register') }}">Register</a></p>
-    <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" disabled>
-    <p>You must add database as well as Flask-Login to enable user management. See the <a href="http://www.realpython.com">Real Python</a> course for more info!</p>
-  </form>
+<div id="entireDiv" style="margin-bottom:0px;">
+  <div id="leftDiv1" >
+      <div>
+          <div class="ad">Log in to your Account</div> 
+          
+      </div>
+
+  </div>
+  <div id="rightDiv"> 
+      <div id="compactSignFlex">  
+        <h3 class="form-heading"> <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>  
+          <p class="anElement" id="signUpNow">Log in to LikeHome</p>
+          <form action="{{ url_for('login') }}" method="POST">
+            {{ form.name(class_ = 'anElement formInput', placeholder = form.name.label.text, required = true, autofocus = true) }}
+            {{ form.password(class_ = 'anElement formInput', placeholder = form.password.label.text, required = true) }}
+            {{form.submit (class="anElement loginButton")}}
+        </form>
+          <p class="anElement orContinue">Or </p>
+          <div id="googleStuff" class="anElement"> <!--Google Nonsense-->
+              <script src="https://accounts.google.com/gsi/client" async defer></script>
+              <div id="g_id_onload" 
+                  data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                  data-login_uri="https://your.domain/your_login_endpoint"
+                  data-auto_prompt="false">
+              </div>
+              <div class="g_id_signin"
+                  data-type="standard"
+                  data-size="large"
+                  data-theme="outline"
+                  data-text="sign_in_with"
+                  data-shape="rectangular"
+                  data-logo_alignment="left">
+              </div>
+          </div>
+          <p style="color:rgb(233, 45, 45); font-size:10px; margin-top:-10px;">Coming Soon</p>
+         
+      </div>
+      <div id="loginToYourAccount">Don't have an account? <a id="loginPageLink" style="font-size:15px !important" href="{{ url_for('register') }}">Sign up</a></div>
+  </div>
+</div>
 {% endblock %}

@@ -1,0 +1,45 @@
+
+<!--
+{% extends 'layouts/main.html' %}
+{% block title %} {% endblock %}
+{% block content %}
+<div>
+    <div class="row">
+
+      {% for hotel in hotels %}
+
+
+
+        <div class="col-sm-8 mt-2">
+            <div class="card">
+                <img src="{{ hotel.image }}" alt="{{hotel.names}}"
+                    class="card-img-top" height="300">
+                <p class="card-body">
+                    
+                <p>{{ hotel.ratings }} star</p>
+            
+
+                <p class="text-center">{{hotel.names}}</p>
+                <p clas="text-center">Price ${{hotel.reviews}}</p>
+                </p>
+                <div class="card-footer">
+                    <form class="form-group" action="{{url_for('result')}}" method="post">
+                    <div class="form-col align-items-center">
+                    <input type="hidden" name="product_id" value="{{hotel.id}}">
+                            <input class="form-control" type="number" name ="quantity" id="" value="1" min="1" max="{{hotel.id}}">
+                            <button type="submit" class="btn btn-warning mt-4 text-white"> <i class="icon-cart-add mr-2"></i> Add to cart</button>
+                        <button type="button" class="btn btn-warning mt-4 text-white" onclick="location.href = '/product/{{ hotel.id }}';">Details</button>
+                    </div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+-->

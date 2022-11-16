@@ -1,37 +1,37 @@
 from flask_wtf import FlaskForm
-from wtforms import TextField, PasswordField
-from wtforms.validators import DataRequired, EqualTo, Length
+from wtforms.validators import DataRequired, EqualTo, Length, Email
 from flask_wtf.file import FileAllowed, FileField, FileRequired
 from wtforms import Form, SubmitField, StringField, IntegerField, TextAreaField, SelectField, PasswordField, \
-    BooleanField, validators
+    BooleanField, validators, EmailField
 
 # Set your classes here.
 
 
-class RegisterForm(Form):
-    name = TextField(
+class RegisterForm(FlaskForm):
+    name = StringField(
         'Username', validators=[DataRequired(), Length(min=6, max=25)]
     )
-    email = TextField(
-        'Email', validators=[DataRequired(), Length(min=6, max=40)]
+    email = EmailField(
+        'Email', validators=[DataRequired(),Email(), Length(min=6, max=40)]
     )
     password = PasswordField(
         'Password', validators=[DataRequired(), Length(min=6, max=40)]
     )
-    confirm = PasswordField(
-        'Repeat Password',
-        [DataRequired(),
-        EqualTo('password', message='Passwords must match')]
-    )
+
+    submit = SubmitField("Register")
 
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
+    name = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Sign In')
 
 
 class ForgotForm(Form):
-    email = TextField(
+    email = TextAreaField(
         'Email', validators=[DataRequired(), Length(min=6, max=40)]
     )
+
+
+class SearchForm(Form):
+    city = StringField('city', validators=[DataRequired()])
