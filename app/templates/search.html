@@ -32,7 +32,7 @@
 <section class="main-content" >
     <h1 style="color:black; text-align: left; margin-left: 20px; ">Search Results:</h1>
     
-    
+    {{products.searchResults.results}}
     {% for p in products.searchResults.results %}
     <div class="container">
         <br>
@@ -73,34 +73,38 @@
                         <div class="d-flex justify-content-between align-items-end">
                             <div class="hotel-card_details">
                                 <div class="text-muted mb-2"><i class="fas fa-map-marker-alt"></i> {{ p.address.streetAddress}}, {{p.address.region}}</div>
+                                {% if p.guestReviews%}
                                 <div class="mb-2"><span class="badge badge-primary">{{ p.starRating}}</span> <a href="#!" class="text-muted">{{ p.guestReviews.total}}reviews</a></div>
                                 <div class="amnities d-flex mb-3">
+                                    {% endif %}
+                                    
                                     <form  action="{{url_for('reserve')}}" method="POST">
-                                    <input type="hidden" name="id" value="{{p.id}}">
-                                    <input type="hidden" name="address" value="{{p.address.streetAddress}}">
+                                        <input type="hidden" name="id" value="{{p.id}}">
+                                    <input type="hidden" name="hotel_name" value="{{p.name}}">
+                                    <input type="hidden" name="street_address" value="{{p.address.streetAddress}}">
                                     <input type="hidden" name="price" value="{{p.ratePlan.price.exactCurrent}}">
+                                    <input type="hidden" name="image" value="{{p.optimizedThumbUrls.srpDesktop}}">
+                                    <input type="hidden" name="city" value="{{p.address.locality}}">
+                                    <input type="hidden" name="zip" value="{{p.address.postalCode}}">
+                                    <input type="hidden" name="state" value="{{p.address.region}}">
+                                    <input type="hidden" name="country" value="{{p.address.countryName}}">
                                     
 
                                     <label style="font-size:15px;">
                                         Check in:
                                         
-                                        <input style="height: 20px;  color: black; font-size: 15px;"  type="date" value="2023-10-15" />
+                                        <input style="height: 20px;  color: black; font-size: 15px;"  name="checkin" type="date"  />
                                        </label>
                                        <label style="font-size:15px;">
                                         Check Out:
                                         
-                                        <input style="height: 20px;  color: black; font-size: 15px;"  type="date" value="2023-10-15" />
+                                        <input style="height: 20px;  color: black; font-size: 15px;" name="checkout" type="date"  />
                                        </label>
                                     
                                 </div>
                                 
                                     
-                                    <label style="font-size:15px;" > King Room
-                                    <input class="form-control" type="number" name ="king" id="" value="0" min="0" max="{{p.kingRoom}}">   
-                                    </label>
-                                <label style="font-size:15px;">Queen Room
-                                    <input class="form-control" type="number" name ="queen" id="" value="0" min="0" max="{{p.queenRoom}}">   
-                                </label>
+                                  
                                 
                                    
                                 

@@ -26,7 +26,7 @@ from app.models import User, Reservations
 import stripe
 import requests
 from sqlalchemy import update
-
+from datetime import datetime
 import json
 
 
@@ -231,17 +231,37 @@ def payment():
 @app.route("/reservation", methods=['POST', 'GET'])
 def reserve():
 
-    i = request.form.get('id')
-    address = request.form.get('address')
+    
+    id = request.form.get('id')
+    street_address = request.form.get('street_address')
     price = request.form.get('price')
+    image = request.form.get('image')
+    city = request.form.get('city')
+    zip = request.form.get('zip')
+    state = request.form.get('state')
+    country = request.form.get('country')
+    hotel_name = request.form.get('hotel_name')
+    check_in = request.form.get('checkin')
+    check_out = request.form.get('checkout')
 
-    if i and address and price and request.method == "POST":
+
+    
+    ''' 
+    if id and street_address and price and image and city and zip and state and country and request.method == "POST":
         p = price
-        id = i
-        add = address
-        points = math.floor(int(float(price)) * 10)
+        id = id
+        add = street_address
+        image = image
+        city = city
+        zip = zip
+        state = state
+        country = country   
 
-    return render_template('reservation.html', p=p, add=add, id=id, points=points)
+'''
+
+        
+    return render_template('reservation.html', p = price, add = street_address, id= id, image= image, city= city, zip = zip, state = state, country = country, hotel_name = hotel_name, checkin = check_in, checkout= check_out)
+
 
 
 @app.route('/logout')
