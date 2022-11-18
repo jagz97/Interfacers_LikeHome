@@ -14,9 +14,9 @@
 
 <form action="{{url_for('search')}}" method="POST">
 <div class="input-group rounded" style="margin-top:20px;">
-    <input style="height: 50px; font-size: 25px;" type="serach" name="q" class="form-control rounded" placeholder="Search for your city here" aria-label="Search" aria-describedby="search-addon" />
+    <input style="font-family: 'Copperplate', fantasy; height: 50px; font-size: 25px;" type="serach" name="q" class="form-control rounded" placeholder="Search for your city here" aria-label="Search" aria-describedby="search-addon" />
     <span class="input-group-text border-0" id="search-addon">
-        <button style="width:100px; height: 40px;" type="submit" class="btn btn-primary">Search</button>
+        <button style="font-size: x-large; width:100px; height: 40px;" type="submit" class="btn btn-primary">🔎</button>
     </span>
   </div>
 
@@ -30,9 +30,9 @@
 
 
 <section class="main-content" >
-    <h1 style="color:black; text-align: left; margin-left: 20px; ">Search Results:</h1>
+    <h1 style="font-size: 40px; font-family: 'Copperplate'; color: black; text-align: left; margin-left: 20px; ">Search Results:</h1>
     
-    {{products.searchResults.results}}
+    
     {% for p in products.searchResults.results %}
     <div class="container">
         <br>
@@ -66,15 +66,15 @@
                     </div>
                     <div class="hotel-card_info p-4">
                         <div class="d-flex align-items-center mb-2">
-                            <h4 class="mb-0 mr-2">{{ p.name }}</h4>
+                            <h4 class="mb-0 mr-2" style="font-family: 'Copperplate'; font-size: medium">{{ p.name }}</h4>
                             
                             <a href="#!" class="text-dark ml-auto"><i class="far fa-heart fa-lg"></i></a>
                         </div>
                         <div class="d-flex justify-content-between align-items-end">
                             <div class="hotel-card_details">
-                                <div class="text-muted mb-2"><i class="fas fa-map-marker-alt"></i> {{ p.address.streetAddress}}, {{p.address.region}}</div>
+                                <div class="text-muted mb-2" style="font-family: 'Arial';"><i class="fas fa-map-marker-alt"></i> {{ p.address.streetAddress}}, {{p.address.region}}</div>
                                 {% if p.guestReviews%}
-                                <div class="mb-2"><span class="badge badge-primary">{{ p.starRating}}</span> <a href="#!" class="text-muted">{{ p.guestReviews.total}}reviews</a></div>
+                                <div class="mb-2"><span class="badge badge-primary" style="font-family: 'Arial';">{{ p.starRating}}</span> <a href="#!" class="text-muted" style="font-family: 'Arial';">{{ p.guestReviews.total}} review(s)</a></div>
                                 <div class="amnities d-flex mb-3">
                                     {% endif %}
                                     
@@ -90,13 +90,13 @@
                                     <input type="hidden" name="country" value="{{p.address.countryName}}">
                                     
 
-                                    <label style="font-size:15px;">
-                                        Check in:
+                                    <label style="font-family: 'Arial';font-size:15px;">
+                                        Check-in Date:
                                         
                                         <input style="height: 20px;  color: black; font-size: 15px;"  name="checkin" type="date"  />
                                        </label>
-                                       <label style="font-size:15px;">
-                                        Check Out:
+                                       <label style="font-family: 'Arial';font-size:15px;">
+                                        Check-out Date:
                                         
                                         <input style="height: 20px;  color: black; font-size: 15px;" name="checkout" type="date"  />
                                        </label>
@@ -111,14 +111,14 @@
                             </div>
                             <div class="hotel-card_pricing text-center">
                                 <div class="d-flex">
-                                    <h6 class="">King Room Price: ${{ p.ratePlan.price.exactCurrent}} <br>
+                                    <h6 class="" style="font-family: 'Arial';">King Room Price: ${{ p.ratePlan.price.exactCurrent}} <br>
                                      Bundeled Stay: {{p.ratePlan.price.fullyBundledPricePerStay}}</h6>        
                                                 
 
                                     
                                </div>
                                 
-                                <button type="submit" class="btn btn-primary">Reserve Now</button>
+                                <button type="submit" class="btn btn-primary" style="font-family: 'Arial';">RESERVE</button>
                             </form>
                             </div>
                         </div>

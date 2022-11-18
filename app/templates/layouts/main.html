@@ -49,17 +49,19 @@
     
           <ul>
             
-              <li><a style="color: rgb(255, 255, 255)" href="#">Home</a></li>
-              <li><a style="color: rgb(255, 255, 255)" href="#">About</a></li>
-              <li><a style="color: rgb(255, 255, 255)" href="#">Categories</a></li>
-              <li><a style="color: rgb(255, 255, 255)" href="#">Contact Us</a></li>
+              <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="#">Home</a></li>
+              <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="#">About</a></li>
+              <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="#">Categories</a></li>
+              <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="#">Contact Us</a></li>
               {% if current_user.is_anonymous %}
-              <li  class="signup"><a style="color: rgb(25, 141, 150)" href="{{ url_for('register') }}">Sign Up</a></li>
+              <li  class="signup"><a style="font-family: 'Arial'; color: rgb(25, 141, 150)" href="{{ url_for('register') }}">Sign Up</a></li>
               {% else %}
               
               
-              <li><a style="color: rgb(255, 255, 255)" href="/profile">Profile</a></li>
-              <li><a style="color: rgb(255, 255, 255)" href="{{ url_for('logout') }}">Logoout</a></li>
+
+              <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="#">Profile</a></li>
+              <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="{{ url_for('logout') }}">Logoout</a></li>
+
               {% endif %}
           </ul>
       </nav>
@@ -68,7 +70,7 @@
       <form action="{{ url_for('search') }}" method="POST">
         <h1 style= "font-family:Reem Kufi, sans-serif">Start Planning </h1>
         <h1 style= "font-family:Reem Kufi, sans-serif"> Your Stay</h1>
-        <input type="search" class="search" placeholder="Search here now" aria-label="Search" , name="q">
+        <input type="search" style="font-family: 'Arial';" class="search" placeholder="Search City Here" aria-label="Search" , name="q" required>
         <button class="find-hotel-lnk" type="submit"> Find your hotel </button>
            
         </form>
