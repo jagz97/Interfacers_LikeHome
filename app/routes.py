@@ -2,6 +2,7 @@
 # Imports
 #----------------------------------------------------------------------------#
 
+import math
 from pyairports.airports import Airports
 from amadeus import Client, ResponseError, Location
 from flask import Flask, render_template
@@ -27,17 +28,6 @@ import requests
 from sqlalchemy import update
 
 import json
-
-
-
-
-
-
-
-
-    
-
-
 
 
 '''
@@ -95,41 +85,36 @@ for p in product:
 '''
 
 
-
-
-
-@app.route("/searchs", methods=['GET','POST'])
+@app.route("/searchs", methods=['GET', 'POST'])
 def searchs():
     search_input = request.form.get('q')
-    
-    return render_template('test.html', search_input= search_input) 
+
+    return render_template('test.html', search_input=search_input)
 
 
-
-
-@app.route('/search', methods=['GET','POST'])
+@app.route('/search', methods=['GET', 'POST'])
 def search():
     search_input = request.form.get('q')
-    
 
     url1 = "https://hotels-com-provider.p.rapidapi.com/v1/destinations/search"
 
-
-    querystring1 = {"query":search_input,"currency":"USD","locale":"en_US"}
+    querystring1 = {"query": search_input,
+                    "currency": "USD", "locale": "en_US"}
 
     headers1 = {
-	"X-RapidAPI-Key": "5e7e5dccfdmsh167cbe3cb5f7241p1b67ffjsnd253c9c8d696",
-	"X-RapidAPI-Host": "hotels-com-provider.p.rapidapi.com"
+        "X-RapidAPI-Key": "5e7e5dccfdmsh167cbe3cb5f7241p1b67ffjsnd253c9c8d696",
+        "X-RapidAPI-Host": "hotels-com-provider.p.rapidapi.com"
     }
 
-    response1 = requests.request("GET", url1, headers=headers1, params=querystring1)
+    response1 = requests.request(
+        "GET", url1, headers=headers1, params=querystring1)
 
-    data= response1.text
+    data = response1.text
     print(data)
     jdata = json.loads(data)
 
-    preety = json.dumps(jdata,indent=3)
-#print(preety)
+    preety = json.dumps(jdata, indent=3)
+# print(preety)
 
     city = jdata['suggestions'][0]['entities'][0]['destinationId']
 
@@ -137,51 +122,36 @@ def search():
 
     url = "https://hotels-com-provider.p.rapidapi.com/v1/hotels/search"
 
-    querystring = {"checkin_date":"2022-11-20","checkout_date":"2022-11-20","sort_order":"STAR_RATING_HIGHEST_FIRST","destination_id":city,"adults_number":"1","locale":"en_US","currency":"USD"}
+    querystring = {"checkin_date": "2022-11-20", "checkout_date": "2022-11-20", "sort_order": "STAR_RATING_HIGHEST_FIRST",
+                   "destination_id": city, "adults_number": "1", "locale": "en_US", "currency": "USD"}
 
     headers = {
-	"X-RapidAPI-Key": "5e7e5dccfdmsh167cbe3cb5f7241p1b67ffjsnd253c9c8d696",
-	"X-RapidAPI-Host": "hotels-com-provider.p.rapidapi.com"
-}
+        "X-RapidAPI-Key": "5e7e5dccfdmsh167cbe3cb5f7241p1b67ffjsnd253c9c8d696",
+        "X-RapidAPI-Host": "hotels-com-provider.p.rapidapi.com"
+    }
 
-    response = requests.request("GET", url, headers=headers, params=querystring).text
+    response = requests.request(
+        "GET", url, headers=headers, params=querystring).text
     jres = json.loads(response)
 
     inc = 0
 
-
-
-    
-
-
-
-
-   
-
-
-    return render_template('search.html', products=jres, inc = inc) 
-
-
-
-
+    return render_template('search.html', products=jres, inc=inc)
 
 
 @app.route('/upcoming', methods=['GET', 'POST'])
 def viewres():
     if current_user.is_authenticated:
         user = current_user
-        reservation = Reservations.query.filter(Reservations.username== user.name).all()
+        reservation = Reservations.query.filter(
+            Reservations.username == user.name).all()
+        user_to_display = User.query.filter(
+            User.name == user.name).one()
+
+    return render_template('upcoming.html', reservation=reservation, user=user_to_display)
 
 
-
-
-    
-
-    return render_template('upcoming.html', reservation = reservation)
-
-
-
-#for s in data:
+# for s in data:
  #   print(s["address"])
 
 @app.route('/success', methods=['GET', 'POST'])
@@ -190,20 +160,20 @@ def success():
     Success message display upon successful payment
     """
 
-    
-
     return render_template('success.html')
 
-@app.route('/delete', methods=['GET','POST'])
+
+@app.route('/delete', methods=['GET', 'POST'])
 def delete_res():
 
     id = request.form.get('id')
-    Reservations.query.filter(Reservations.id==id).delete()
+    Reservations.query.filter(Reservations.id == id).delete()
 
     db.session.commit()
     return redirect(url_for('viewres'))
 
     return render_template('upcoming.html')
+
 
 @app.route('/payments', methods=['GET', 'POST'])
 def payment():
@@ -213,7 +183,7 @@ def payment():
     """
     if request.method == "POST":
         price = request.form.get('amount')
-        hotelname= request.form.get('add')
+        hotelname = request.form.get('add')
         id = request.form.get('id')
         hotel_id_str = str(id)
         price_str = str(price)
@@ -221,17 +191,27 @@ def payment():
         user = current_user
         username = user.name
 
-        
-    
-        
-        
-        addres = Reservations( hotelId=hotel_id_str, hotelName=hotelname_str,price=price_str,username= username)
-        
+        addres = Reservations(
+            hotelId=hotel_id_str, hotelName=hotelname_str, price=price_str, username=username)
 
         db.session.add(addres)
+
+        user_to_update = User.query.filter(
+            User.name == user.name).one()
+        print(f"user is {user_to_update}")
+
+        if user_to_update.points:
+            user_to_update.points = math.floor(
+                int(float(price)) / 10) + user_to_update.points
+        else:
+            user_to_update.points = math.floor(
+                int(float(price)) / 10)
+
         db.session.commit()
 
         return redirect(url_for('success'))
+
+
 ''' 
 
     customer = stripe.Customer.create(
@@ -248,25 +228,20 @@ def payment():
 '''
 
 
-    
-
 @app.route("/reservation", methods=['POST', 'GET'])
 def reserve():
-    
+
     i = request.form.get('id')
     address = request.form.get('address')
     price = request.form.get('price')
-    
-    
+
     if i and address and price and request.method == "POST":
         p = price
         id = i
-        add = address   
+        add = address
+        points = math.floor(int(float(price)) * 10)
 
-
-
-        
-    return render_template('reservation.html', p = p, add = add, id= id )
+    return render_template('reservation.html', p=p, add=add, id=id, points=points)
 
 
 @app.route('/logout')
@@ -277,6 +252,7 @@ def logout():
     """
     logout_user()
     return redirect(url_for('login'))
+
 
 @app.route('/results')
 @login_required
@@ -291,6 +267,7 @@ def results():
 
     return render_template('search.html', products=products)
 
+
 @app.route('/')
 def home():
     return render_template('pages/placeholder.home.html')
@@ -302,13 +279,12 @@ def about():
     return render_template('pages/placeholder.about.html')
 
 
-
-@app.route('/login', methods=['GET','POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = LoginForm(request.form)
-    if request.method =='POST':
+    if request.method == 'POST':
         user = User.query.filter_by(name=form.name.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('invalid username or password')
@@ -319,7 +295,7 @@ def login():
     return render_template('forms/login.html', form=form)
 
 
-@app.route('/register', methods=['GET','POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
 
     if not current_user.is_authenticated:
@@ -328,18 +304,19 @@ def register():
             name = form.name.data
             email = form.email.data
             password = form.password.data
-            passwordh = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+            passwordh = generate_password_hash(
+                password, method='pbkdf2:sha256', salt_length=8)
             newuser = User(name=name, email=email, password=passwordh)
             try:
                 db.session.add(newuser)
                 db.session.commit()
-                flash("Account Created for user {}".format(form.name.data)) 
+                flash("Account Created for user {}".format(form.name.data))
             except Exception:
                 flash('Username or email already taken')
-                return redirect(url_for('register'))      
+                return redirect(url_for('register'))
             return redirect(url_for('login'))
     else:
-        return redirect(url_for('login'))          
+        return redirect(url_for('login'))
     return render_template('forms/register.html', form=form)
 
 
@@ -349,7 +326,15 @@ def forgot():
     return render_template('forms/forgot.html', form=form)
 
 
-
+@app.route('/profile', methods=['GET', 'POST'])
+def profile():
+    """
+    Success message display upon successful payment
+    """
+    user = current_user
+    user_to_display = User.query.filter(
+        User.name == user.name).one()
+    return render_template('profile.html', user=user_to_display)
 
 
 '''
@@ -366,7 +351,7 @@ def result():
 
 @app.errorhandler(500)
 def internal_error(error):
-    #db_session.rollback()
+    # db_session.rollback()
     return render_template('errors/500.html'), 500
 
 
@@ -374,10 +359,12 @@ def internal_error(error):
 def not_found_error(error):
     return render_template('errors/404.html'), 404
 
+
 if not app.debug:
     file_handler = FileHandler('error.log')
     file_handler.setFormatter(
-        Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
+        Formatter(
+            '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
     )
     app.logger.setLevel(logging.INFO)
     file_handler.setLevel(logging.INFO)

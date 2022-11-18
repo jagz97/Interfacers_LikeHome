@@ -13,12 +13,6 @@ import pandas
 from datetime import datetime
 
 
-
-
-
-
-
-
 engine = create_engine('sqlite:///hotels.db', echo=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
@@ -27,7 +21,6 @@ Base = declarative_base()
 Base.query = db_session.query_property()
 
 # Set your classes here.
-
 
 
 class JsonEcodedDict(db.TypeDecorator):
@@ -45,6 +38,7 @@ class JsonEcodedDict(db.TypeDecorator):
         else:
             return json.loads(value)
 
+
 class Reservations(db.Model):
     __searchable__ = ['username']
     id = db.Column(db.Integer, primary_key=True)
@@ -54,7 +48,7 @@ class Reservations(db.Model):
     price = db.Column(db.Numeric(10, 2), nullable=False)
     pub_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     username = db.Column(db.String(32), nullable=False)
- 
+
     def __repr__(self):
         return '<Reservations {}>'.format(self.username)
 
@@ -66,6 +60,7 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(300), nullable=False)
+    points = db.Column(db.Integer, nullable=True)
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
@@ -77,11 +72,11 @@ class User(db.Model, UserMixin):
         return '<User {}>'.format(self.name)
 
 
-
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
 # Create tables.
+
 
 Base.metadata.create_all(bind=engine)
 db.create_all()
@@ -89,5 +84,3 @@ db.create_all()
 file_name = "app/data1.csv"
 
 df = pandas.read_csv(file_name)
-
-
