@@ -51,7 +51,7 @@
             
               <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="#">Home</a></li>
               <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="">About</a></li>
-              <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="#">Reservations</a></li>
+              <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="{{url_for('viewres')}}">Reservations</a></li>
               <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="#">Contact Us</a></li>
               {% if current_user.is_anonymous %}
               <li  class="signup"><a style="font-family: 'Arial'; color: rgb(25, 141, 150)" href="{{ url_for('register') }}">Sign Up</a></li>

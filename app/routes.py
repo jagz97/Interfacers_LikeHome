@@ -168,6 +168,13 @@ def success():
 @app.route('/delete', methods=['GET', 'POST'])
 def delete_res():
 
+    if current_user.is_authenticated:
+        user = current_user
+        reservation = Reservations.query.filter(
+            Reservations.username == user.name).all()
+        user_to_display = User.query.filter(
+            User.name == user.name).one()
+
     id = request.form.get('id')
 
     Reservations.query.filter(Reservations.id == id).delete()
@@ -175,7 +182,7 @@ def delete_res():
     db.session.commit()
     
 
-    return render_template('charge.html')
+    return render_template('charge.html', reservation = reservation)
 
 @login_required
 @app.route('/payments', methods=['GET', 'POST'])
