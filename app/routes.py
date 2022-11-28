@@ -95,6 +95,8 @@ def searchs():
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     search_input = request.form.get('q')
+    checkin = request.form.get('checkin')
+    checkout = request.form.get('checkout')
 
     url1 = "https://hotels-com-provider.p.rapidapi.com/v1/destinations/search"
 
@@ -122,7 +124,7 @@ def search():
 
     url = "https://hotels-com-provider.p.rapidapi.com/v1/hotels/search"
 
-    querystring = {"checkin_date": "2022-11-20", "checkout_date": "2022-11-20", "sort_order": "STAR_RATING_HIGHEST_FIRST",
+    querystring = {"checkin_date": checkin, "checkout_date": checkout, "sort_order": "STAR_RATING_HIGHEST_FIRST",
                    "destination_id": city, "adults_number": "1", "locale": "en_US", "currency": "USD"}
 
     headers = {
@@ -136,7 +138,7 @@ def search():
 
     inc = 0
 
-    return render_template('search.html', products=jres, inc=inc)
+    return render_template('search.html', products=jres, inc=inc, checkin = checkin, checkout = checkout)
 
 
 @app.route('/upcoming', methods=['GET', 'POST'])
@@ -167,21 +169,22 @@ def success():
 def delete_res():
 
     id = request.form.get('id')
+
     Reservations.query.filter(Reservations.id == id).delete()
 
     db.session.commit()
-    return redirect(url_for('viewres'))
+    
 
-    return render_template('upcoming.html')
+    return render_template('charge.html')
 
-
+@login_required
 @app.route('/payments', methods=['GET', 'POST'])
 def payment():
     """
     Stripe payment setup for secure checkout
     Source: https://stripe.com/docs/payments/checkout/migration
-    """
-    if request.method == "POST":
+
+   
         price = request.form.get('amount')
         hotelname = request.form.get('add')
         id = request.form.get('id')
@@ -191,8 +194,32 @@ def payment():
         user = current_user
         username = user.name
 
+       
+    """
+    if request.method == "POST":
+        
+        id = request.form.get('id')
+        hotel_id_str = str(id)
+        street_address = request.form.get('street_address')
+        price = request.form.get('price')
+        price_str = str(price)
+        city = request.form.get('city')
+        city_str = str(city)
+        zip = request.form.get('zip')
+        state = request.form.get('state')
+        country = request.form.get('country')
+        country_str = str(country)
+        hotel_name = request.form.get('hotel_name')
+        hotel_name_str = str(hotel_name)
+        check_in = request.form.get('checkin')
+        check_in_str = str(check_in)
+        check_out = request.form.get('checkout')
+        check_out_str = str(check_out)
+        user = current_user
+        username = user.name
+
         addres = Reservations(
-            hotelId=hotel_id_str, hotelName=hotelname_str, price=price_str, username=username)
+            hotelId=id, hotelName=hotel_name_str, price=price_str, username=username, check_in= check_in_str, check_out=check_out_str, country=country_str)
 
         db.session.add(addres)
 

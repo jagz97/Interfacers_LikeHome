@@ -50,8 +50,8 @@
           <ul>
             
               <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="#">Home</a></li>
-              <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="#">About</a></li>
-              <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="#">Categories</a></li>
+              <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="">About</a></li>
+              <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="#">Reservations</a></li>
               <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="#">Contact Us</a></li>
               {% if current_user.is_anonymous %}
               <li  class="signup"><a style="font-family: 'Arial'; color: rgb(25, 141, 150)" href="{{ url_for('register') }}">Sign Up</a></li>
@@ -59,7 +59,7 @@
               
               
 
-              <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="#">Profile</a></li>
+              <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="{{ url_for('profile') }}">Profile</a></li>
               <li><a style="font-family: 'Arial'; color: rgb(255, 255, 255)" href="{{ url_for('logout') }}">Logoout</a></li>
 
               {% endif %}
@@ -70,7 +70,18 @@
       <form action="{{ url_for('search') }}" method="POST">
         <h1 style= "font-family:Reem Kufi, sans-serif">Start Planning </h1>
         <h1 style= "font-family:Reem Kufi, sans-serif"> Your Stay</h1>
-        <input type="search" style="font-family: 'Arial';" class="search" placeholder="Search City Here" aria-label="Search" , name="q" required>
+        <input type="search" style="font-family: 'Arial';" class="search" placeholder="Search City Here" aria-label="Search" , name="q" required/>
+
+        <label style="font-family: 'Arial';font-size:15px;  margin-left: -650px;">
+                                        Check-in Date:
+                                        
+                                        <input style="height: 20px; margin-top: 10px; color: black; font-size: 15px;"  name="checkin" type="date"  required/>
+                                       </label>
+                                       <label style="font-family: 'Arial';font-size:15px; margin-left: -650px;">
+                                        Check-out Date:
+                                        
+                                        <input style="height: 20px;  color: black; font-size: 15px;" name="checkout" type="date" required />
+                                       </label>
         <button class="find-hotel-lnk" type="submit"> Find your hotel </button>
            
         </form>

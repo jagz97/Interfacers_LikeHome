@@ -1,0 +1,67 @@
+
+{% extends 'layouts/form.html' %}
+{% block title %}Cancel{% endblock %}
+{% block content %}
+<style>
+    html,body {
+  background: #e9eeff;
+}
+
+.progress {
+  height: 8px;
+}
+
+.progress-info {
+  font-size: 11px;
+}
+
+.access-data {
+  font-size: 11px;
+}
+
+.progress-bar {
+  background: #3656DC;
+}
+
+.btn-primary, .btn-primary:active, .btn-primary:visited, .btn-primary:focus {
+  background-color: #3656DC;
+  border-color: #3656DC;
+}
+
+.btn-primary:hover {
+  background-color: #2a43ad;
+  border-color: #2a43ad;
+}
+</style>
+
+
+You will be charged $25 cancelaation fee:
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            
+            {% for r in reservation %}
+
+            </div>
+            <div class="plan p-3 bg-white mt-2"><span class="d-block">Canel Reservation for {{r.hotelName}}</span><span class="access-data d-block mb-4"></span><button class="btn btn-danger btn-sm px-4" type="button">Cancel your Stay</button></div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<form action="{{url_for('viewres')}}" method="POST">
+<script
+                src="https://checkout.stripe.com/checkout.js"
+                class="stripe-button"
+                data-key="pk_test_51KxjFzLGavGifIHgE46wfoXUQnSmanRC0rX6KRsL6iH0gII3LZ1INayMe0nH51wIJdakCyEwhEoux6tjphnPIbnm00gWEU1Qcx"
+                data-name="Checkout App"
+                data-description="Current Order"
+                data-amount="{{ price }}"
+                data-currency="usd">
+              </script>
+
+              </form>
+
+
+              {% endblock %}

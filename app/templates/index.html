@@ -53,7 +53,7 @@ margin:0px;
 color: #122526;
             }
 
-           .logout {
+            button {
                 cursor:pointer;
                 background-color: #54CFDB;
                 font-family: 'Reem Kufi Ink';
@@ -151,25 +151,21 @@ color: #000000;
 
     <div class="entireDiv">
         <div class="leftDiv">
-            <img class="pfp-image" src="/static/img/profileIcon.jpg" alt="profile picture" />
+            <img class="pfp-image" src="profileIcon.jpg" alt="profile picture" />
             <div class="username">
-                <p class="usernameText">Hello, {{user.name}}</p>    
+                <p class="usernameText">Username</p>    
             </div>
             <div class="rewardsPoints">
                 <p class="rewardsPointsText">Rewards Points:</p>
-                <p class="rewardsPointsNumber">{{user.points}}</p>
+                <p class="rewardsPointsNumber">12</p>
             </div>
         </div>
         <div class="rightDiv">
            <div class="pfp-words">
                 <h3 class="pfp-title">Profile Page</h3>
-                <p class="pfp-desc">View your upcoming reservations:</p>
-                <a  href="/upcoming">Reservations</a>
+                <p class="pfp-desc">Customize profile icon and view your rewards points.</p>
            </div> 
-           
-            <a class="logout" href="{{ url_for('logout') }}">Logout</a>
-           
-           
+           <button>Logout</button>
         </div>
     </div>
 </body>

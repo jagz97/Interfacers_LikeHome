@@ -107,11 +107,13 @@
               </label>
               
               <form action="{{url_for('payment')}}" method="POST"> 
-                <input type="hidden" name="amount" value="{{(p)|int*100}}">
+                <input type="hidden" name="price" value="{{p}}">
                 <input type="hidden" name="add" value="{{add}}">
-                <input type="hidden" name="ids" value="{{id}}">
-                
-                
+                <input type="hidden" name="hotel_name" value="{{hotel_name}}">
+                <input type="hidden" name="id" value="{{id}}">
+                <input type="hidden" name="checkin" value="{{checkin}}">
+                <input type="hidden" name="checkout" value="{{checkout}}">
+                <input type="hidden" name="country" value="{{add}},{{city}},{{state}},{{zip}},{{country}}">
                 
 
               <script

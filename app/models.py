@@ -48,6 +48,9 @@ class Reservations(db.Model):
     price = db.Column(db.Numeric(10, 2), nullable=False)
     pub_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     username = db.Column(db.String(32), nullable=False)
+    check_in = db.Column(db.String(32), nullable=False)
+    check_out= db.Column(db.String(32), nullable=False)
+    country = db.Column(db.String(32), nullable=False)
 
     def __repr__(self):
         return '<Reservations {}>'.format(self.username)
